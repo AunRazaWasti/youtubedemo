@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube Demo by Aun</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*:focus{
+    outline: none;
+}
+
+body{
+    position: relative;
+    background: #f0f0f0;
+    font-family: 'roboto', sans-serif;
+}
+
+.navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    padding: 0 2.5vw;
+}
+
+.toggle-btn{
+    width: 20px;
+    height: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.toggle-btn span{
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #979797;
+}
+
+.toggle-btn span:nth-child(1){
+    top: 0;
+}
+
+.toggle-btn span:nth-child(3){
+    top: 100%;
+}
+
+.logo{
+    height: 30px;
+    margin: -10px 30px 0;
+}
+
+.search-box{
+    position: relative;
+    max-width: 500px;
+    width: 50%;
+    height: 35px;
+    display: flex;
+}
+
+.search-bar{
+    width: 85%;
+    height: 100%;
+    border: 2px solid #dbdbdb;
+    padding: 0 20px;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+
+.search-btn{
+    width: 15%;
+    height: 100%;
+    background: #f0f0f0;
+    border: 2px solid #dbdbdb;
+    padding: 5px 0;
+    border-left: none;
+}
+
+.search-btn img{
+    height: 100%;
+}
+
+.user-options{
+    height: 35px;
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+}
+
+.user-options .icon{
+    height: 80%;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.user-dp{
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.user-dp img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.side-bar{
+    position: fixed;
+    top: 60px;
+    left: 0;
+    min-width: 250px;
+    width: 250px;
+    height: calc(100vh - 60px);
+    background: #fff;
+    padding-right: 10px;
+
+}
+
+.links{
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+    color: #242424;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.links img{
+    height: 25px;
+    margin-right: 20px;
+}
+
+.links:hover,
+.links.active{
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.seperator{
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+.filters{
+    position: fixed;
+    left: 250px;
+    top: 60px;
+    width: calc(100% - 250px);
+    height: 60px;
+    background: #fff;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.filters::-webkit-scrollbar{
+    display: none;
+}
+
+.filter-options{
+    flex: 0 0 auto;
+    padding: 10px 20px;
+    border-radius: 50px;
+    background: #f0f0f0;
+    border: 1px solid #dbdbdb;
+    text-transform: capitalize;
+    margin-right: 10px;
+    color: #242424;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.filter-options.active{
+    color: #fff;
+    background: #242424;
+}
+.video-1{
+    width: 355px;
+    margin-left: 250px;
+    /* width: calc(100% - 250px); */
+    margin-top: 120px;
+    padding: 20px;
+    grid-template-columns: repeat(4, 25%);
+    grid-gap: 20px 5px;
+    overflow-x: hidden;
+}
+.video-2{
+
+    width: 355px;
+    margin-top: 120px;
+    padding: 20px;
+    grid-template-columns: repeat(4, 25%);
+    grid-gap: 20px 5px;
+    overflow-x: hidden;
+}
+
+
+.video{
+    min-height: 250px;
+    height: auto;
+}
+
+.thumbnail{
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.content{
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.channel-icon{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.title{
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+}
+
+.channel-name{
+    font-size: 14px;
+    margin: 2px 0;
+    color: #979797;
+}
+.container {
+    display: flex;
+}
+
+.video-3{
+    width: 355px;
+    margin-left: 250px;
+    /* width: calc(100% - 250px); */
+    margin-top: 10px;
+    padding: 20px;
+    grid-template-columns: repeat(4, 25%);
+    grid-gap: 20px 5px;
+    overflow-x: hidden;
+}
+.video-4{
+
+    width: 355px;
+    margin-top: 10px;
+    padding: 20px;
+    grid-template-columns: repeat(4, 25%);
+    grid-gap: 20px 5px;
+    overflow-x: hidden;
+}
+.video-1:hover {
+    transform: scale(1.2);
+}
+.video-2:hover {
+    transform: scale(1.2);
+}
+.video-3:hover {
+    transform: scale(1.2);
+}
+.video-4:hover {
+    transform: scale(1.2);
+}
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar">
+        <div class="toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <img src="./img/youtube.png" class="logo" alt="">
+        <div class="search-box">
+            <input type="text" class="search-bar" placeholder="search">
+            <button class="search-btn"><img src="./img/search.png" alt=""></button>
+        </div>
+        <div class="user-options">
+            <img src="" class="icon" alt="">
+            <img src="./img/upload.png" class="icon" alt="">
+            <img src="./img/google apps.png" class="icon" alt="">
+            <img src="./img/bellicon.png" class="icon" alt="">
+            <div class="user-dp">
+                <img src="./img/user.png" alt="">
+            </div>
+        </div> 
+    </nav>
+    <div class="side-bar">
+        <a href="#" class="links active"><img src="./img/hom.png" alt="">home</a>
+        <a href="#" class="links"><img src="./img/short.png" alt="">Shorts</a>
+        <a href="#" class="links"><img src="./img/subscribtion.png" alt="">subscription</a>
+        <hr class="seperator">
+        <a href="#" class="links"><img src="./img/library.png" alt="">library</a>
+        <a href="#" class="links"><img src="./img/history.png" alt="">history</a>
+        <a href="#" class="links"><img src="./img/yourvideos.png" alt="">your video</a>
+        <a href="#" class="links"><img src="./img/watch.png" alt="">watch later</a>
+        <a href="#" class="links"><img src="./img/like.png" alt="">liked videos</a>
+    </div>
+    <div class="filters">
+        <button class="filter-options active">all</button>
+        <button class="filter-options">Sports</button>
+        <button class="filter-options">Music</button>
+        <button class="filter-options">Dramas</button>
+        <button class="filter-options">Entertainment</button>
+        <button class="filter-options">Cartoons</button>
+        <button class="filter-options">Artificial intelligence</button>
+        <button class="filter-options">Movies</button>
+        <button class="filter-options">News</button>
+    </div>
+    <div class="container">
+    <div class="video-1">
+        <div class="video">
+            <img src="./img/thum.jpg" class="thumbnail" alt="">
+            <div class="content">
+                <img src="./img/thum.jpg" class="channel-icon" alt="">
+                <div class="info">
+                    <h4 class="title">How to Make YouTube Thumbnail FT: Aun Raza</h4>
+                    <p class="channel-name">modern web</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="video-2">
+        <div class="video">
+            <img src="img/thumb.jpg" class="thumbnail" alt="">
+            <div class="content">
+                <img src="img/thumb.jpg" class="channel-icon" alt="">
+                <div class="info">
+                    <h4 class="title">How to Make YouTube Thumbnail FT</h4>
+                    <p class="channel-name">modern web</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+<div class="video-3">
+    <div class="video">
+        <img src="./img/thum.jpg" class="thumbnail" alt="">
+        <div class="content">
+            <img src="./img/thum.jpg" class="channel-icon" alt="">
+            <div class="info">
+                <h4 class="title">How to Make YouTube Thumbnail FT: Aun Raza</h4>
+                <p class="channel-name">modern web</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="video-4">
+    <div class="video">
+        <img src="img/thumb.jpg" class="thumbnail" alt="">
+        <div class="content">
+            <img src="img/thumb.jpg" class="channel-icon" alt="">
+            <div class="info">
+                <h4 class="title">How to Make YouTube Thumbnail FT</h4>
+                <p class="channel-name">modern web</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
